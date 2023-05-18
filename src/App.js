@@ -12,7 +12,7 @@ function App() {
   }, []);
 
   const fetchData = () => {
-    fetch('https://3scale-admin.apps.cluster-s6mft.s6mft.sandbox952.opentlc.com/stats/services/4/top_applications.json?access_token=0zHujjIWrulhlj9e&since=2023-05-16&period=month&metric_name=hits')
+    fetch('https://3scale-admin.apps.cluster-s6mft.s6mft.sandbox952.opentlc.com/stats/services/4/top_applications.json?access_token=0zHujjIWrulhlj9e&since=2023-05-16&period=month&metric_name=hitshttps://3scale-admin.apps.cluster-wzhhm.wzhhm.sandbox319.opentlc.com/stats/services/4/top_applications.json?access_token=DYLoem9wR5CkDVlN&since=2023-05-16&period=month&metric_name=hits')
       .then((response) => response.json())
       .then((data) => {
         const updatedValues = {};
@@ -21,8 +21,10 @@ function App() {
           const { name, value } = application;
           let adjustedValue = Number(value);
 
-          if (adjustedValue > 10) {
+          if (adjustedValue > 10 && adjustedValue <= 20) {
             adjustedValue = 10 + 3 * (adjustedValue - 10);
+          } else if (adjustedValue > 20) {
+            adjustedValue = 10 + 3 * (20 - 10) + 10 * (adjustedValue - 20);
           }
 
           updatedValues[name] = adjustedValue;
